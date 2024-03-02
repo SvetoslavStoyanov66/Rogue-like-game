@@ -33,6 +33,7 @@ while running:
     if keys[pygame.K_d]:
         environment.move(player_speed, 0)  # Move environment left to simulate player moving right
 
+    player.update()
         # Render
     screen.fill((0, 0, 0))
     environment.draw(screen)
