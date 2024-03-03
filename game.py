@@ -1,7 +1,8 @@
 import pygame
 from Environment import Environment, StaticSprite
 from player import Player
-
+from pygame.math import Vector2
+import math
 pygame.init()
 
 # Set up the screen
@@ -25,15 +26,21 @@ while running:
 
      # Check for keys pressed
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        environment.move(0, -player_speed)  # Move environment down to simulate player moving up
-    if keys[pygame.K_s]:
-        environment.move(0, player_speed)  # Move environment up to simulate player moving down
-    if keys[pygame.K_a]:
-        environment.move(-player_speed, 0)  # Movyour_background_imageeenvironment right to simulate player moving left
-    if keys[pygame.K_d]:
-        environment.move(player_speed, 0)  # Move environment left to simulate player moving right
+    movement = Vector2(0, 0)
 
+    if keys[pygame.K_w]:
+        movement.y -= player_speed  # Move up
+    if keys[pygame.K_s]:
+        movement.y += player_speed  # Move down
+    if keys[pygame.K_a]:
+        movement.x -= player_speed # Move left
+    if keys[pygame.K_d]:
+        movement.x += player_speed # Move right
+    if movement.x != 0 and movement.y != 0:
+        movement.x /= math.sqrt(2)
+        movement.y /= math.sqrt(2)
+
+    environment.move(movement.x, movement.y)   
     player.update()
         # Render
     screen.fill((0, 0, 0))
