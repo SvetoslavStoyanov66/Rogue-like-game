@@ -1,5 +1,5 @@
 import pygame
-from Environment import Environment
+from Environment import Environment, StaticSprite
 from player import Player
 
 pygame.init()
@@ -8,6 +8,7 @@ pygame.init()
 screen_width, screen_height = 1280, 720
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Game Window")
+
 
 # Create game objects
 environment = Environment()
@@ -29,7 +30,7 @@ while running:
     if keys[pygame.K_s]:
         environment.move(0, player_speed)  # Move environment up to simulate player moving down
     if keys[pygame.K_a]:
-        environment.move(-player_speed, 0)  # Move environment right to simulate player moving left
+        environment.move(-player_speed, 0)  # Movyour_background_imageeenvironment right to simulate player moving left
     if keys[pygame.K_d]:
         environment.move(player_speed, 0)  # Move environment left to simulate player moving right
 
