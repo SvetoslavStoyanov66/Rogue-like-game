@@ -1,5 +1,5 @@
 import pygame
-from Environment import Environment, StaticSprite
+from Environment import Environment, Enemy
 from player import Player
 from pygame.math import Vector2
 import math
@@ -41,10 +41,13 @@ while running:
         movement.y /= math.sqrt(2)
 
     environment.move(movement.x, movement.y)   
+    
     player.update()
         # Render
     screen.fill((0, 0, 0))
     environment.draw(screen)
+    for enemy in environment.all_sprites:
+        enemy.update()
     player.draw(screen)
     pygame.display.update()
 
